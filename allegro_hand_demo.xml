@@ -1,0 +1,46 @@
+<mujoco model="allegro_hand_demo">
+  <compiler angle="radian" coordinate="local"/>
+  <option timestep="0.002"/>
+
+  <worldbody>
+    <light pos="0 0 1"/>
+    <geom name="table" type="plane" size="1 1 0.1" rgba="0.8 0.8 0.8 1"/>
+
+    <!-- Küçük küp (kavranacak nesne) -->
+    <body name="object" pos="0 0 0.05">
+      <geom type="box" size="0.02 0.02 0.02" rgba="1 0 0 1" mass="0.02"/>
+    </body>
+
+    <!-- Basit 4 parmaklı el -->
+    <body name="hand" pos="0 0 0.05">
+      <geom type="sphere" size="0.03" rgba="0.6 0.6 0.6 1"/>
+
+      <body name="finger1" pos="0.03 0 0">
+        <joint name="f1" type="hinge" axis="0 0 1" range="0 1.0"/>
+        <geom type="capsule" fromto="0 0 0 0 0.04 0" size="0.005"/>
+      </body>
+
+      <body name="finger2" pos="0 0.03 0">
+        <joint name="f2" type="hinge" axis="0 0 1" range="0 1.0"/>
+        <geom type="capsule" fromto="0 0 0 0 0.04 0" size="0.005"/>
+      </body>
+
+      <body name="finger3" pos="-0.03 0 0">
+        <joint name="f3" type="hinge" axis="0 0 1" range="0 1.0"/>
+        <geom type="capsule" fromto="0 0 0 0 0.04 0" size="0.005"/>
+      </body>
+
+      <body name="finger4" pos="0 -0.03 0">
+        <joint name="f4" type="hinge" axis="0 0 1" range="0 1.0"/>
+        <geom type="capsule" fromto="0 0 0 0 0.04 0" size="0.005"/>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="f1_act" joint="f1" kp="10"/>
+    <position name="f2_act" joint="f2" kp="10"/>
+    <position name="f3_act" joint="f3" kp="10"/>
+    <position name="f4_act" joint="f4" kp="10"/>
+  </actuator>
+</mujoco>
